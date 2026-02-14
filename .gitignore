@@ -1,1 +1,3 @@
-shell-c
+shell
+shell.o
+Notes.md

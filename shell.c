@@ -47,6 +47,7 @@ int my_num_builtins() {
 */
 int my_exit(char **args)
 {
+    (void)args; // Silences the warning
     return 0;
 }
 
@@ -104,12 +105,14 @@ int my_cd(char **args)
 
 int my_help(char **args) 
 {
+    (void)args; // Silences the warning
     int i;
     printf("My Own Shell\n");
     printf("Type program names and arguments, and hit enter.\n");
     printf("The following are builtin:\n");
 
-    for (i = 0; i < my_num_builtins(); i++) {
+    int my_num_builtins_len = my_num_builtins();
+    for (i = 0; i < my_num_builtins_len; i++) {
         printf(".  %s\n", builtin_str[i]);
     }
 
@@ -153,7 +156,8 @@ int my_execute(char **args)
     }
 
     //launch a builtin
-    for (i = 0; i < my_num_builtins(); i++) {
+    int my_num_builtins_len = my_num_builtins();
+    for (i = 0; i < my_num_builtins_len; i++) {
         if (strcmp(args[0], builtin_str[i]) == 0) {
             return (*builtin_func[i])(args);
         }
@@ -252,20 +256,9 @@ void repl(void)
         free(args);
     } while (status);
 }
-void run_test(char *test_name, char **mock_args, int expected_status) {
-    printf("Testing %s... ", test_name);
-    
-    // Call the execute function directly
-    int status = my_execute(mock_args);
-    
-    if (status == expected_status) {
-        printf("PASSED\n");
-    } else {
-        printf("FAILED (Expected %d, got %d)\n", expected_status, status);
-    }
-}
 
-int main(int args, char **argv)
+
+int main()
 {
     // Load config files, if any.
 

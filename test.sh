@@ -10,7 +10,7 @@ run_test() {
 
     # Capture output and clean it up
     # sed removes the prompt "$ " from the start of lines
-    ACTUAL=$(echo -e "$INPUT\nexit" | ./shell-c | sed 's/^\$ //g' | sed '/^$/d' | head -n 1)
+    ACTUAL=$(echo -e "$INPUT\nexit" | ./shell | sed 's/^\$ //g' | sed '/^$/d' | head -n 1)
 
     if [ "$ACTUAL" == "$EXPECTED" ]; then
         echo -e "PASS: $DESC"

@@ -1,7 +1,12 @@
 # A simple shell in C
 
-- `gcc -o shell-c shell.c` to compile it, and then `./shell-c` to run it.
-- `gcc -o shell-c shell.c; chmod +x test.sh; ./test.sh`
+## Compile and run
+- `make` Compiles your project and creates the ./lisp executable.
+- `make test` Rebuilds the code (if needed) and runs test_shell.sh.
+- `make memcheck` Runs program through Valgrind.
+- `make clean`: Deletes .o files and the executable.
+
+## Others
 - In man 3p there is thorough documentation on every system call. 
 - https://pubs.opengroup.org/onlinepubs/9699919799/
 
